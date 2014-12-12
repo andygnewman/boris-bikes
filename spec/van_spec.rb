@@ -6,10 +6,13 @@ require 'van'
 require 'docking_station'
 require 'garage'
 
+  
+
 describe Van do 
 
 	let(:van) { Van.new(:capacity => 5)}
-	let(:broken_bike) {Bike.new}
+	#let(:broken_bike) {Bike.new}
+  let(:broken_bike) {double(@broken = true)} # how to make it allow respond_to?(:broken?)
 	let(:working_bike) {Bike.new}
   let(:station) {DockingStation.new}
   let(:garage) {Garage.new}
@@ -19,7 +22,7 @@ describe Van do
 	end
 
 	it "should load broken bikes into van" do
-    broken_bike.break!
+    #broken_bike.break!
     station.dock(broken_bike)
     station.dock(working_bike)
     van.load_from_station(station)
